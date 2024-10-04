@@ -63,7 +63,7 @@ body {
 }
 
 .sidebar {
-    width: 200px;
+    width: 230px;
     background-color: #136ad5;
     color: #ecf0f1;
     display: flex;
@@ -319,7 +319,7 @@ header .header-icons i {
                 <a href="#"><i class="fas fa-user"></i></a>
             </div>
         </header>
-        <?php include 'navbar.php' ;?>
+       
     
     </div>
 
