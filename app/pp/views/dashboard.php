@@ -19,6 +19,7 @@ body {
     overflow: hidden;
 }
 
+
 /* Style pour le conteneur du logo et du hamburger */
 .logo-container {
     display: flex;
@@ -63,7 +64,7 @@ body {
 }
 
 .sidebar {
-    width: 200px;
+    width: 230px;
     background-color: #136ad5;
     color: #ecf0f1;
     display: flex;
@@ -91,6 +92,7 @@ body {
 
 .sidebar .nav-text {
     margin-left: 10px;
+    font-size: 20px;
 }
 
 /* Style pour le menu de navigation replié */
@@ -256,12 +258,7 @@ header .header-icons i {
     background-color: #1a4a9b;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Réduction de l'ombre au clic */
 }
-#prof{
-    background-color: #D9B650;
-}
-#elev{
-    background-color: #BC2525;
-}
+
 /* Section gestion surveillants*/
 #surveillants-container {
     margin-bottom: 30px;
@@ -299,7 +296,7 @@ header .header-icons i {
         </div>
         <nav>
             <ul>
-                <h3><li><a href="../Dashboard/index.php"><i class="fas fa-tachometer-alt"></i><span class="nav-text"> Tableau de bord</span></a></li></h3>
+                <h3><li><a href="../../Views/Dashboard/index.php"><i class="fas fa-tachometer-alt"></i><span class="nav-text"> Tableau de bord</span></a></li></h3>
                 <li><a href="#professors"><i class="fas fa-chalkboard-teacher"></i><span class="nav-text"> Professeurs</span></a></li>
                 <li><a href="#payments"><i class="fas fa-credit-card"></i><span class="nav-text"> Paiements</span></a></li>
                 <li><a href="#supervisors"><i class="fas fa-user-tie"></i><span class="nav-text"> Surveillants</span></a></li>
@@ -311,7 +308,7 @@ header .header-icons i {
     </div>
     <div class="main-content">
         <header>
-        
+
             <div class="search-bar">
                 <input type="text" placeholder="Recherche...">
                 <i class="fas fa-search"></i>
@@ -324,12 +321,12 @@ header .header-icons i {
                 <a href="#"><i class="fas fa-user"></i></a>
             </div>
         </header>
-        <?php include 'navbar.php' ;?>
-    
+
+
     </div>
 
     <script>
-        
+
     document.getElementById('hamburger').addEventListener('click', function() {
         const sidebar = document.getElementById('sidebar');
         sidebar.classList.toggle('collapsed'); // Ajoute ou enlève la classe 'collapsed'

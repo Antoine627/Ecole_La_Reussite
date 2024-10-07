@@ -3,30 +3,13 @@
 
 require 'Config/config.php'; // Inclure le fichier de configuration
 require 'Controllers/AuthentificationController.php';
-require 'Controllers/SupervisorController.php';
+require 'Controllers/SurveillantController.php';
+
 
 $authentificationController = new AuthentificationController($conn);
+
+// Gestion de l'authentification
 $errorMessage = $authentificationController->login();
-require('Views/Autentification/login.php'); // Charger la vue
+require('Views/Autentification/login.php'); // Charger la vue d'authentification
 
-
-
-// Vérification de l'action demandée
-$action = $_GET['action'] ?? 'list';
-$action = $_GET['action'] ?? 'home';
-
-$surveillantController = new SupervisorController($conn);
-
-// Vérification de l'action demandée
-$action = $_GET['action'] ?? 'list'; // Par défaut, afficher la liste
-
-switch ($action) {
-    case 'create':
-        $controller->create();
-        break;
-        case 'logout':
-            echo "Action logout triggered"; // Debugging pour voir si cette action est bien captée
-            $authentificationController->logout();
-            break;
-}
 
