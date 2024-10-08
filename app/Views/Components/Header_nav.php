@@ -296,7 +296,7 @@ header .header-icons i {
             <ul>
                 <h3><li><a href="index.php"><i class="fas fa-tachometer-alt"></i><span class="nav-text"> Tableau de bord</span></a></li></h3>
                 <li><a href="#professors"><i class="fas fa-chalkboard-teacher"></i><span class="nav-text"> Professeurs</span></a></li>
-                <li><a href="#payments"><i class="fas fa-credit-card"></i><span class="nav-text"> Paiements</span></a></li>
+                <li><a href="payments"><i class="fas fa-credit-card"></i><span class="nav-text"> Paiements</span></a></li>
                 <li><a href="#supervisors"><i class="fas fa-user-tie"></i><span class="nav-text"> Surveillants</span></a></li>
                 <li><a href="#students"><i class="fas fa-users"></i><span class="nav-text"> Élèves</span></a></li>
                 <li><a href="#settings"><i class="fas fa-cogs"></i><span class="nav-text"> Paramètres</span></a></li>

@@ -1,5 +1,5 @@
 <?php
-require_once 'models/SupervisorModel.php'; // Inclure le modèle
+require_once 'Models/SupervisorModel.php'; // Inclure le modèle
 
 class SupervisorController {
     private $model;
@@ -12,7 +12,7 @@ class SupervisorController {
     // Afficher tous les surveillants
     public function index() {
         $surveillants = $this->model->getAll();
-        include 'views/supervisor_list.php'; // Charger la vue pour afficher la liste des surveillants
+        include 'views/Supervisors/supervisor_list.php'; // Charger la vue pour afficher la liste des surveillants
     }
 
     // Créer un nouveau surveillant

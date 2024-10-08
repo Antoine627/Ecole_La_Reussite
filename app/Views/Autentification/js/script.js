@@ -1,15 +1,17 @@
-/*const labels = document.querySelectorAll(".form-control label");
+//icon :basculer entre "password" et "text". 
+const togglePassword = document.querySelector('#togglePassword');
+        const passwordField = document.querySelector('#password');
+        
+        togglePassword.addEventListener('click', function () {
+            // Toggle the password visibility
+            const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordField.setAttribute('type', type);
+            
+            // Toggle the icon
+            this.classList.toggle('fa-eye');
+            this.classList.toggle('fa-eye-slash');
+        });
 
-labels.forEach((label) => {
-  label.innerHTML = label.innerText
-    .split("")
-    .map(
-      (letter, idx) =>
-        `<span style="transition-delay:${idx * 50}ms">${letter}</span>`
-    )
-    .join("");
-});
-*/
 
 document.getElementById('loginForm').addEventListener('submit', function(e) {
     // Récupérer les éléments du formulaire
@@ -39,7 +41,7 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
     // Vérifier si le champ mot de passe est vide
     if (passwordInput.value === '') {
         passwordInput.classList.add('error');
-        errorMessage.textContent = 'Veuillez remplir tous les champs du formulaire.';
+        errorMessage.textContent = 'Veuillez saisir un mot de passe valide';
         errorMessage.style.display = 'block';
         hasError = true;
     }

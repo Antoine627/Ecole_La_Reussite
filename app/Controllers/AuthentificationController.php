@@ -47,13 +47,11 @@ class AuthentificationController
                 } 
                 else 
                 {
-                    $errorMessage = "L'utilisateur n'existe pas.";
+                   $errorMessage = "Veuillez remplir tous les champs";
                 }
+                
+               
             } 
-            else 
-            {
-                $errorMessage = "Veuillez remplir tous les champs du formulaire.";
-            }
         }
     
         // Retourner le message d'erreur, s'il y en a
@@ -73,7 +71,7 @@ class AuthentificationController
         }
 
         // Redirection vers la page de connexion
-        header("Location: ../Views/Authentification/login.php");
+        header("Location: ../Views/Autentification/login.php");
         exit();
     }
 }
