@@ -1,16 +1,18 @@
 <?php
 class Surveillant {
-    private $conn; // Propriété pour la connexion PDO
+    private $db; // Propriété pour la connexion PDO
 
     public function __construct($db) {
-        $this->conn = $db; // Affectez l'objet PDO à la propriété
+        $this->db = $db; // Affectez l'objet PDO à la propriété
     }
 
     // Récupérer tous les surveillants
-    public function getUsers() {
-        $sql = "SELECT * FROM surveillants";
-        $stmt = $this->conn->query($sql);
-        return $stmt; // Retourner l'objet PDOStatement
+    public function getUserById($id) {
+        $query = "SELECT * FROM surveillants WHERE id_surveillant = :id";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC); // Récupérer les données sous forme de tableau associatif
     }
 
     // Fonction pour générer un matricule unique
@@ -98,7 +100,7 @@ class Surveillant {
                          role = :role
                     WHERE id_surveillant = :id_surveillant";
 
-            $stmt = $this->conn->prepare($sql);
+            $stmt = $this->db->prepare($sql);
             $stmt->bindParam(':nom', $nom);
             $stmt->bindParam(':prenom', $prenom);
             $stmt->bindParam(':date_naissance', $date_naissance);

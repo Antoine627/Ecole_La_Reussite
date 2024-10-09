@@ -1,3 +1,7 @@
+<?php
+session_start();
+$successMessage = isset($_SESSION['successMessage']) ? $_SESSION['successMessage'] : "";
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -5,8 +9,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Administration</title>
-    <link rel="stylesheet" href="css/header.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="./css/">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
     <style>
 /* styles.css */
 
@@ -305,7 +310,7 @@ header .header-icons i {
                 <li><a href="#supervisors"><i class="fas fa-user-tie"></i><span class="nav-text"> Surveillants</span></a></li>
                 <li><a href="#students"><i class="fas fa-users"></i><span class="nav-text"> Élèves</span></a></li>
                 <li><a href="#settings"><i class="fas fa-cogs"></i><span class="nav-text"> Paramètres</span></a></li>
-                <li><a href="index.php?action=logout"><i class="fas fa-sign-out-alt"></i><span class="nav-text"> Déconnexion</span></a></li>
+                <li><a href="../../index.php?action=logout"><i class="fas fa-sign-out-alt"></i><span class="nav-text"> Déconnexion</span></a></li>
             </ul>
         </nav>
     </div>
@@ -325,6 +330,14 @@ header .header-icons i {
             </div>
         </header>
         <?php include 'navbar.php' ;?>
+
+        <h1>Bienvenue sur la page d'accueil</h1>
+
+    <!-- Affichage du message de succès -->
+    <?php if (!empty($successMessage)): ?>
+        <p class="success-message"><?php echo $successMessage; ?></p>
+        <?php unset($_SESSION['successMessage']); // Effacez le message après l'affichage ?>
+    <?php endif; ?>
     
     </div>
 

@@ -1,14 +1,4 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Administration</title>
-    <link rel="stylesheet" href="css/header.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-/* styles.css */
+* styles.css */
 
 body {
     font-family: Arial, sans-serif;
@@ -18,7 +8,6 @@ body {
     height: 100vh;
     overflow: hidden;
 }
-
 
 /* Style pour le conteneur du logo et du hamburger */
 .logo-container {
@@ -64,7 +53,7 @@ body {
 }
 
 .sidebar {
-    width: 230px;
+    width: 200px;
     background-color: #136ad5;
     color: #ecf0f1;
     display: flex;
@@ -92,7 +81,6 @@ body {
 
 .sidebar .nav-text {
     margin-left: 10px;
-    font-size: 20px;
 }
 
 /* Style pour le menu de navigation replié */
@@ -258,7 +246,12 @@ header .header-icons i {
     background-color: #1a4a9b;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Réduction de l'ombre au clic */
 }
-
+#prof{
+    background-color: #D9B650;
+}
+#elev{
+    background-color: #BC2525;
+}
 /* Section gestion surveillants*/
 #surveillants-container {
     margin-bottom: 30px;
@@ -281,40 +274,3 @@ header .header-icons i {
     border-radius: 4px;
 }
 
-
-    </style>
-</head>
-<body>
-    <div class="sidebar" id="sidebar">
-        <div class="logo-container">
-            <div class="logo">
-                <img src="../Authentification/images/logo.png" alt="logo">
-            </div>
-            <div class="hamburger" id="hamburger">
-                <i class="fas fa-bars"></i>
-            </div>
-        </div>
-        <nav>
-            <ul>
-                <h3><li><a href="../../Views/Dashboard/index.php"><i class="fas fa-tachometer-alt"></i><span class="nav-text"> Tableau de bord</span></a></li></h3>
-                <li><a href="#professors"><i class="fas fa-chalkboard-teacher"></i><span class="nav-text"> Professeurs</span></a></li>
-                <li><a href="#payments"><i class="fas fa-credit-card"></i><span class="nav-text"> Paiements</span></a></li>
-                <li><a href="#supervisors"><i class="fas fa-user-tie"></i><span class="nav-text"> Surveillants</span></a></li>
-                <li><a href="#students"><i class="fas fa-users"></i><span class="nav-text"> Élèves</span></a></li>
-                <li><a href="#settings"><i class="fas fa-cogs"></i><span class="nav-text"> Paramètres</span></a></li>
-                <li><a href="index.php?action=logout"><i class="fas fa-sign-out-alt"></i><span class="nav-text"> Déconnexion</span></a></li>
-            </ul>
-        </nav>
-    </div>
-    
-
-    <script>
-
-    document.getElementById('hamburger').addEventListener('click', function() {
-        const sidebar = document.getElementById('sidebar');
-        sidebar.classList.toggle('collapsed'); // Ajoute ou enlève la classe 'collapsed'
-    });
-
-    </script>
-</body>
-</html>

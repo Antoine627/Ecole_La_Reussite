@@ -144,6 +144,18 @@ body {
     <div class="container">
         <img src="images/logo.PNG" class="logo" alt="Logo">
         <h1>Connexion</h1>
+
+        <!-- Overlay pour le message de succès -->
+    <div class="overlay" id="successOverlay">
+        <?php if (!empty($successMessage)): ?>
+            <div class="success-message" id="successMessage">
+                <?php echo $successMessage; ?>
+            </div>
+        <?php endif; ?>
+    </div>
+
+
+
         <form id="loginForm" method="post">
             <div class="form-control">
                 <input type="email" name="email"  id="email" placeholder="Email"  />
@@ -174,7 +186,18 @@ labels.forEach((label) => {
     .join("");
 });
 */
+// Afficher l'overlay si un message de succès existe
+document.addEventListener("DOMContentLoaded", function() {
+            const successOverlay = document.getElementById('successOverlay');
+            <?php if (!empty($successMessage)): ?>
+                successOverlay.style.display = 'flex'; // Afficher l'overlay
+                setTimeout(function() {
+                    successOverlay.style.display = 'none'; // Masquer l'overlay après 3 secondes
+                }, 3000); // Vous pouvez ajuster la durée
+            <?php endif; ?>
+        });
 
+        
 document.getElementById('loginForm').addEventListener('submit', function(e) {
     // Récupérer les éléments du formulaire
     const form = document.getElementById('loginForm');

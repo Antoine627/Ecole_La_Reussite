@@ -1,54 +1,33 @@
 <?php
-require_once 'config/database.php'; // Inclure la configuration de la base de données
-require_once 'controllers/SurveillantController.php';
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
-// Connexion à la base de données
-$db = getDatabaseConnection();
+// Inclure le fichier de configuration pour la connexion à la base de données
+require_once '../config/config.php';
 
-// Initialisation du contrôleur
-$controller = new SurveillantController($db);
+try {
+    // Connexion à la base de données
+    $db = new PDO('mysql:host=localhost;dbname=school_success;charset=utf8', 'root', '');
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-// Vérification de l'ID du surveillant à archiver
-if (isset($_GET['id'])) {
-    $id_surveillant = $_GET['id'];
-    $surveillant = $controller->surveillant->getUserById($id_surveillant);
+    // Vérification de l'ID dans les paramètres GET
+    if (isset($_GET['id_surveillant'])) {
+        $id_surveillant = intval($_GET['id_surveillant']); // Assurez-vous que l'ID est un entier
 
-    if ($surveillant) {
-        // Archiver le surveillant (changer son statut à 'archivé')
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $surveillant['statut'] = 'archivé'; // Mettre à jour le statut
-            $controller->surveillant->updateUser(
-                $surveillant['id_surveillant'],
-                $surveillant['num_identite'],
-                $surveillant['nom'],
-                $surveillant['prenom'],
-                $surveillant['date_naissance'],
-                $surveillant['adresse'],
-                $surveillant['sexe'],
-                $surveillant['telephone'],
-                $surveillant['email'],
-                $surveillant['mot_de_passe'],
-                $surveillant['matricule'],
-                $surveillant['niveau'],
-                $surveillant['date_embauche'],
-                $surveillant['salaire'],
-                'archivé', // Changer le statut à "archivé"
-                $surveillant['role']
-            );
+        // Mise à jour de la colonne d'archivage
+        $sql = "UPDATE surveillants SET archive = 1 WHERE id_surveillant = ?";
+        $stmt = $db->prepare($sql);
 
-            echo "Le surveillant a été archivé.";
+        if ($stmt->execute([$id_surveillant])) {
+            // Redirection ou message de succès
+            header('Location: surveillants.php?success=1');
+            exit();
+        } else {
+            echo "<script>alert('Erreur lors de l\'archivage.');</script>";
         }
-?>
-        <h2>Archiver le surveillant</h2>
-        <p>Voulez-vous vraiment archiver le surveillant <strong><?= $surveillant['nom'] ?> <?= $surveillant['prenom'] ?></strong> ?</p>
-        <form method="POST" action="archiver.php?id=<?= $id_surveillant ?>">
-            <input type="submit" value="Archiver">
-        </form>
-<?php
-    } else {
-        echo "Surveillant introuvable.";
     }
-} else {
-    echo "ID de surveillant non fourni.";
+} catch (PDOException $e) {
+    echo "Erreur de connexion : " . htmlspecialchars($e->getMessage());
+    exit();
 }
 ?>

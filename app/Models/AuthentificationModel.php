@@ -31,4 +31,3 @@ class AuthentificationModel
         return null;
     }
 }
-

@@ -8,22 +8,49 @@ if (isset($_GET['id'])) {
 
     // Vérifiez si le formulaire de confirmation a été soumis
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        // Supprimez le surveillant de la base de données
-        $query = "DELETE FROM surveillants WHERE id_surveillant = ?";
+        // Étape 1 : Récupérer les données du surveillant à supprimer
+        $query = "SELECT * FROM surveillants WHERE id_surveillant = ?";
         $stmt = $db->prepare($query);
+        $stmt->execute([$id_surveillant]);
+        $surveillant = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        // Exécutez la requête en passant l'ID dans execute
-        if ($stmt->execute([$id_surveillant])) {
-            // Redirigez vers la page des surveillants après la suppression
-            header('Location: surveillants.php');
-            exit();
+        if ($surveillant) {
+            // Étape 2 : Insérer les données dans la table archive
+            $archiveQuery = "INSERT INTO archive (id_surveillant, nom, prenom, date_naissance, adresse, sexe, telephone, email, niveau, date_embauche, statut) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            $archiveStmt = $db->prepare($archiveQuery);
+            $archiveStmt->execute([
+                $surveillant['id_surveillant'],
+                $surveillant['nom'],
+                $surveillant['prenom'],
+                $surveillant['date_naissance'],
+                $surveillant['adresse'],
+                $surveillant['sexe'],
+                $surveillant['telephone'],
+                $surveillant['email'],
+                $surveillant['niveau'],
+                $surveillant['date_embauche'],
+                $surveillant['statut']
+            ]);
+
+            // Étape 3 : Supprimez le surveillant de la base de données
+            $deleteQuery = "DELETE FROM surveillants WHERE id_surveillant = ?";
+            $deleteStmt = $db->prepare($deleteQuery);
+
+            // Exécutez la requête de suppression
+            if ($deleteStmt->execute([$id_surveillant])) {
+                // Redirigez vers la page des surveillants après la suppression
+                header('Location: surveillants.php?message=Surveillant supprimé avec succès');
+                exit();
+            } else {
+                echo "Erreur lors de la suppression du surveillant.";
+            }
         } else {
-            echo "Erreur lors de la suppression du surveillant.";
+            echo "Surveillant non trouvé.";
         }
     }
 } else {
     // Si aucun ID n'est spécifié, redirigez vers la page des surveillants
-    header('Location: views/surveillants.php');
+    header('Location: surveillants.php');
     exit();
 }
 ?>

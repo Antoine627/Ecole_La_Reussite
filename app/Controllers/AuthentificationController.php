@@ -1,7 +1,6 @@
 <?php
 // controllers/AuthenticationController.php
 
-session_start();
 require 'Models/AuthentificationModel.php';
 
 class AuthentificationController 
@@ -38,7 +37,7 @@ class AuthentificationController
     
                         // Redirection vers la page d'accueil
                         header("Location: Views/Dashboard/index.php");
-                        exit();
+                        exit(); // Stoppe l'exécution après la redirection
                     } 
                     else 
                     {
@@ -74,6 +73,7 @@ class AuthentificationController
 
         // Redirection vers la page de connexion
         header("Location: ../Views/Authentification/login.php");
-        exit();
+        exit(); // Stoppe l'exécution après la redirection
     }
 }
+?>

@@ -1,0 +1,26 @@
+# Activer le moteur de réécriture
+RewriteEngine On
+
+# Règle pour afficher la liste des surveillants
+RewriteRule ^surveillants$ /surveillants.php [L]
+
+# Règle pour afficher un surveillant spécifique
+RewriteRule ^surveillant/([0-9]+)$ /surveillant.php?id=$1 [L]
+
+# Règle pour ajouter un surveillant
+RewriteRule ^surveillant/ajouter$ /ajouter_surveillant.php [L]
+
+# Règle pour modifier un surveillant spécifique
+RewriteRule ^surveillant/modifier/([0-9]+)$ /modifier_surveillant.php?id=$1 [L]
+
+# Règle pour afficher la liste des étudiants
+RewriteRule ^etudiants$ /etudiants.php [L]
+
+# Règle pour afficher un étudiant spécifique
+RewriteRule ^etudiant/([0-9]+)$ /etudiant.php?id=$1 [L]
+
+# Règle pour ajouter un étudiant
+RewriteRule ^etudiant/ajouter$ /ajouter_etudiant.php [L]
+
+# Règle pour modifier un étudiant spécifique
+RewriteRule ^etudiant/modifier/([0-9]+)$ /modifier_etudiant.php?id=$1 [L]
