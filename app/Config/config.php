@@ -1,22 +1,13 @@
 <?php
-// config.php
-
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "school_success";
+$host = 'localhost';
+$db_name = 'school_success';
+$username = 'root';
+$password = '';
 
 try {
-    // Création de la connexion avec PDO
-    $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=utf8", $username, $password);
-    
-    // Définir le mode d'erreur PDO sur Exception
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    
-    // Si la connexion est réussie
-    // echo "Connexion réussie";
+    $db = new PDO("mysql:host=$host;dbname=$db_name", $username, $password);
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
-    // Si la connexion échoue
-    die("La connexion a échoué : " . $e->getMessage());
+    echo "Connection failed: " . $e->getMessage();
 }
 ?>

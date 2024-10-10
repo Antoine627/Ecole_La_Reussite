@@ -319,8 +319,6 @@ header .header-icons i {
                 <a href="#"><i class="fas fa-user"></i></a>
             </div>
         </header>
-       
-    
     </div>
 
     <script>
